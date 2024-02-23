@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python Venv Manager</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    </body>
+    <div class="container">
+        <h1>Python Venv Manager</h1>
+        <form action="/create" method="post" class="d-flex align-items-center">
+            <div class="flex-fill mr-2">
+                <input type="text" name="venv_name" placeholder="Enter venv name" required class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary" title="Create Venv">
+                <i class="fas fa-plus"></i>
+            </button>
+        </form>
+        <div class="row mt-3">
+            {% for venv in venvs %}
+            <div class="col-md-3 col-sm-6 venv-box">
+                <div class="venv-container">
+                    <h5>{{ venv }}</h5>
+                    <form id="run-command-form-{{ venv }}" class="form-inline" action="/run/{{ venv }}" method="post">
+                        <div>
+                            <input type="text" class="form-control command-input" placeholder="CMD" data-venv-name="{{ venv }}">
+                            <!-- Updated Run button with symbol -->
+                            <button class="btn btn-primary run-venv" data-venv-name="{{ venv }}" title="Run">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <!-- Updated Delete button with symbol -->
+                            <a href="/delete/{{ venv }}" class="btn btn-danger" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            <!-- Button for opening the venv folder -->
+                            <a href="/open/{{ venv }}" class="btn btn-info" title="Open Folder">
+                                <i class="fas fa-folder-open"></i>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Flash Noti Section -->
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endwith %}
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Log</h1>
+        <!-- Command Output Container -->
+        <textarea id="command-output" class="command-output" rows="4" readonly></textarea>
+        <div id="command-history" class="command-history">
+            <!-- Command history will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

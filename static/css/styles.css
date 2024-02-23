@@ -1,0 +1,118 @@
+/* static/css/styles.css */
+body {
+    background-color: #1a314186;
+    color: #e0e0e0;
+}
+
+.alert-info {
+    background-color: #263238;
+    color: #eceff1;
+}
+
+.alert-success {
+    background-color: #1b5e20;
+    color: #a5d6a7;
+}
+
+.alert-danger {
+    background-color: #b71c1c;
+    color: #ef9a9a;
+}
+
+.alert-warning {
+    background-color: #ff6f00;
+    color: #ffe082;
+}
+
+.container {
+    background-color: #211c2e; /* Darker shade */
+    color: #ffffff; /* Light text */
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn-primary, .btn-danger, .btn-info {
+    margin: 0 5px; /* Ensure buttons don't stick together */
+}
+.btn-primary {
+    background-color: #0056b3; /* Darker blue */
+    border-color: #004085; /* Even darker border */
+}
+.btn-danger {
+    background-color: #c82333; /* Darker red */
+    border-color: #bd2130; /* Even darker border */
+}
+.list-group-item {
+    background-color: #495057; /* Darker list item background */
+}
+.command-output {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+    resize: none; /* Prevents resizing */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    font-family: monospace;
+}
+input[type="text"] {
+    padding: 8px; /* Example padding; adjust as needed */
+}
+.command-history {
+    background-color: #2a2f3a; /* Slightly lighter than the container for contrast */
+    color: #e0e0e0; /* Light text for readability */
+    padding: 10px;
+    margin-top: 20px; /* Space from the preceding elements */
+    border-radius: 5px;
+    overflow-y: auto; /* Make it scrollable */
+    max-height: 400px; /* Adjust based on your preference */
+    font-size: 0.9rem; /* Smaller text */
+}
+.command-history-entry {
+    border-bottom: 1px solid #414a5c; /* Slightly visible segment line */
+    padding-bottom: 5px; /* Space below text before the line */
+    margin-bottom: 5px; /* Space after the line to the next entry */
+}
+.command-history-entry:last-child {
+    border-bottom: none;
+}
+
+.venv-box {
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,0.1); /* Slightly visible border */
+    margin-bottom: 10px; /* Space between rows */
+}
+
+/* Custom CSS for command input responsiveness within venv boxes */
+.venv-container .form-inline > div {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    flex-wrap: wrap; /* Ensure elements can wrap on smaller screens */
+}
+
+.venv-container .command-input {
+    flex-grow: 1;
+    margin-bottom: 10px; /* Ensure spacing on wrap */
+}
+
+@media (max-width: 767px) {
+    .venv-container .form-inline > div {
+        flex-direction: column;
+    }
+
+    .venv-container .command-input, 
+    .venv-container .btn {
+        width: 100%; /* Full width for inputs and buttons on small screens */
+    }
+}
+
+@media (min-width: 576px) {
+    .form-inline .form-control {
+        display: inline-block;
+        width: 100%; /* Make form controls take full width */
+        vertical-align: middle;
+    }
+}
