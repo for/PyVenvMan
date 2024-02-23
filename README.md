@@ -1,2 +1,2 @@
 # PyVenvMan
-A Python Virtual Environment Manager WebUI
+A Python Virtual Environment Manager using Flask
